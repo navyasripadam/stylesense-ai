@@ -3,6 +3,8 @@ const cors = require('cors');
 const multer = require('multer');
 require('dotenv').config();
 
+
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -46,7 +48,7 @@ function calculateBodyShape(bust, waist, hips, shoulders) {
   }
 }
 
-app.post('/api/recommend', upload.single('image'), async (req, res) => {
+app.post('/api/recommend', upload.any(), async (req, res) => {
   try {
     const {
       inputMethod, // 'image' or 'manual'
