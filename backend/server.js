@@ -6,6 +6,9 @@ require('dotenv').config();
 
 
 const app = express();
+app.get('/test', (req, res) => {
+  res.send("Backend working ✅");
+});
 const port = process.env.PORT || 5000;
 
 // Correct import for the new standard Gemini API
