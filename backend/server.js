@@ -54,6 +54,8 @@ function calculateBodyShape(bust, waist, hips, shoulders) {
 app.post('/api/recommend', upload.any(), async (req, res) => {
   try {
     console.log("API HIT");
+    console.log("BODY:", req.body);
+    console.log("FILES:", req.files);
     const {
       inputMethod, // 'image' or 'manual'
       age, hairLength,
@@ -126,12 +128,13 @@ app.post('/api/recommend', upload.any(), async (req, res) => {
 
     let parts = [];
 
-    if (inputMethod === 'image' && req.file) {
+    if (inputMethod === 'image' && req.files && req.files.length > 0) {
+      const file = req.files[0];
       const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
 
-      console.log("Uploaded file MIME type:", req.file.mimetype);
+      console.log("Uploaded file MIME type:", file.mimetype);
 
-      if (!allowedTypes.includes(req.file.mimetype)) {
+      if (!allowedTypes.includes(file.mimetype)) {
         return res.status(400).json({
           error: "Invalid image format. Please upload JPG, PNG, or WEBP image."
         });
@@ -142,8 +145,8 @@ app.post('/api/recommend', upload.any(), async (req, res) => {
       parts = [
         {
           inlineData: {
-            data: req.file.buffer.toString("base64"),
-            mimeType: req.file.mimetype
+            data: file.buffer.toString("base64"),
+            mimeType: file.mimetype
           }
         },
         { text: userPrompt }
