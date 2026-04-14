@@ -52,8 +52,8 @@ function calculateBodyShape(bust, waist, hips, shoulders) {
 }
 
 app.post('/api/recommend', upload.any(), async (req, res) => {
-  console.log("API HIT");
   try {
+    console.log("API HIT");
     const {
       inputMethod, // 'image' or 'manual'
       age, hairLength,
