@@ -192,7 +192,7 @@ app.post('/api/recommend', upload.single('image'), async (req, res) => {
     } else {
       throw new Error("Invalid response from Gemini API");
     }
-    
+
     if (!text) {
       throw new Error("No response from Gemini");
     }

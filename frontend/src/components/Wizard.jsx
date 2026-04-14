@@ -81,7 +81,7 @@ const Wizard = () => {
         });
       }
 
-      const response = await fetch('https://stylesense-backend-zqim.onrender.com/api/recommend', {
+      const response = await fetch('https://stylesense-ai-backend.onrender.com/api/recommend', {
         method: 'POST',
         body: formData,
       });
