@@ -51,11 +51,11 @@ function calculateBodyShape(bust, waist, hips, shoulders) {
   }
 }
 
-app.post('/api/recommend', upload.any(), async (req, res) => {
+app.post('/api/recommend', upload.single('image'), async (req, res) => {
   try {
     console.log("API HIT");
     console.log("BODY:", req.body);
-    console.log("FILES:", req.files);
+    console.log("FILES:", req.file);
     const {
       inputMethod, // 'image' or 'manual'
       age, hairLength,
@@ -128,8 +128,8 @@ app.post('/api/recommend', upload.any(), async (req, res) => {
 
     let parts = [];
 
-    if (inputMethod === 'image' && req.files && req.files.length > 0) {
-      const file = req.files[0];
+    if (inputMethod === 'image' && req.file) {
+      const file = req.file;
       const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
 
       console.log("Uploaded file MIME type:", file.mimetype);

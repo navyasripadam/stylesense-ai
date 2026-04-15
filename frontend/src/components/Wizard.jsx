@@ -81,6 +81,7 @@ const Wizard = () => {
         });
       }
 
+      console.log("🚀 Sending request...");
       const response = await fetch('https://stylesense-ai-backend.onrender.com/api/recommend', {
         method: 'POST',
         body: formData,
